@@ -47,7 +47,7 @@
         {
           "target_name": "checklib",
           "type": "executable",
-          "sources": ["src/index/checklib.c"],
+          "sources": ["src/checklib.c"],
           "libraries": ["-ldl"],
           "ldflags": ["-static-libstdc++"],
         },
