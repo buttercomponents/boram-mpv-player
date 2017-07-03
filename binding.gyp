@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "boram",
+      "target_name": "boram-mpv-player",
       "win_delay_load_hook": "false",
       "sources": ["src/interop.cc"],
       "libraries": ["-lppapi", "-lppapi_cpp", "-lppapi_gles2"],

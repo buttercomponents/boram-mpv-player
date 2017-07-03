@@ -6,9 +6,10 @@
     "scripts": {
         "start": "rm -rf dist && webpack --watch",
         "app": "rm -rf dist/app && NODE_ENV=production webpack",
-    "test": "eslint .",
-    "fix-lin64-ffmpeg": "[ \"${NODE_ENV}\" = production ] && cd dist/*linux-x64 || cd node_modules/electron/dist; rm libffmpeg.so; nm -D electron | awk '/ \\w (av|ff)/{print $3}' | xargs rebind -w electron || nm -D boram-mpv-player | awk '/ \\w (av|ff)/{print $3}' | xargs rebind -w boram-mpv-player",
-    "mpv-lin64-dev": "rm -f \"${BORAM-MPV-PLAYER_WIN_PREBUILT_ROOT}\"/boram-mpv-player*.node && rm -f \"${BORAM-MPV-PLAYER_MAC_PREBUILT_ROOT}/boram-mpv-player.node\" && node-gyp rebuild && cp build/Release/boram-mpv-player.node dist/app/libboram-mpv-player.so && cp build/Release/checklib dist/app",
+        "test": "eslint .",
+        "fix-lin64-ffmpeg": "[ \"${NODE_ENV}\" = production ] && cd dist/*linux-x64 || cd node_modules/electron/dist; rm libffmpeg.so; nm -D electron | awk '/ \\w (av|ff)/{print $3}' | xargs rebind -w electron || nm -D boram-mpv-player | awk '/ \\w (av|ff)/{print $3}' | xargs rebind -w boram-mpv-player",
+        "mpv-dist": "mkdir -p dist && cp build/Release/boram-mpv-player.node dist/libboram-mpv-player.so && cp build/Release/checklib dist/",
+        "mpv-lin64-dev": "rm -f \"${BORAM-MPV-PLAYER_WIN_PREBUILT_ROOT}\"/boram-mpv-player*.node && rm -f \"${BORAM-MPV-PLAYER_MAC_PREBUILT_ROOT}/boram-mpv-player.node\" && node-gyp rebuild && npm run mpv-dist",
     "mpv-win32-prebuild": "del E:\\boram-mpv-player32.node && node-gyp rebuild --arch=ia32 && copy build\\Release\\boram-mpv-player.node E:\\boram-mpv-player32.node",
     "mpv-win64-prebuild": "del E:\\boram-mpv-player64.node && node-gyp rebuild --arch=x64 && copy build\\Release\\boram-mpv-player.node E:\\boram-mpv-player64.node",
     "mpv-mac64-prebuild": "node-gyp rebuild && install_name_tool -change /usr/local/opt/mpv/lib/libmpv.1.dylib '@loader_path/libmpv.1.dylib' build/Release/boram-mpv-player.node",
